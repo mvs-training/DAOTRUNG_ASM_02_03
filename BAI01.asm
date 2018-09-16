@@ -3,7 +3,7 @@
 .Data   
 
 File_Loca db "*.*",0 ;thu muc hien tai
-DT 	 db 128 dup(?) ;phan bo 128 byte chua khoi tao cho bo nho
+DTA 	 db 128 dup(?) ;phan bo 128 byte chua khoi tao cho bo nho
 
 .code
 main proc
@@ -11,8 +11,8 @@ main proc
     mov ds,ax 
     mov es,ax 
 
-    mov dx,OFFSET DT 	
-    mov ah,1Ah 		; dat dia chi cua DT
+    mov dx,OFFSET DTA 	
+    mov ah,1Ah 		; dat dia chi cua DTA
     int 21h 		
 
     mov cx,3Fh 		; doc tu file
@@ -29,7 +29,7 @@ main proc
         jc thoat 	
 
         mov cx,13 		; chieu dai file location
-        mov si,OFFSET DT+30 	
+        mov si,OFFSET DTA+30 	
         xor bh,bh 		
         mov ah,0Eh 		
 
@@ -40,7 +40,7 @@ main proc
 
         loop Tiep
 
-        mov di,OFFSET DT+30 	
+        mov di,OFFSET DTA+30 	
         mov cx,13 		; chieu dai file location
         xor al,al 		
         rep stosb 		; Xoa Data
